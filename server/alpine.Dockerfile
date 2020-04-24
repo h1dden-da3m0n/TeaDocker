@@ -14,12 +14,12 @@ RUN	apk update --no-cache && apk upgrade --no-cache \
     \
     && mkdir -p /ts /ts/logs /ts/certs /ts/files /ts/database /ts/config /ts/crash_dumps \
     && SERVER_VERSION=${SERVER_VERSION:-$(curl -s https://repo.teaspeak.de/server/linux/amd64_stable/latest)} \
-    && wget -nv -O /ts/TeaSpeak.tar.gz \
+    && wget -q -O /ts/TeaSpeak.tar.gz \
         https://repo.teaspeak.de/server/linux/amd64_stable/TeaSpeak-$SERVER_VERSION.tar.gz \
     && tar -xzf /ts/TeaSpeak.tar.gz -C /ts \
     && rm /ts/TeaSpeak.tar.gz \
     && echo "" > /ts/config/config.yml && ln -sf /ts/config/config.yml /ts/config.yml \
-    && wget -nv -O /usr/local/bin/youtube-dl https://yt-dl.org/downloads/latest/youtube-dl \
+    && wget -q -O /usr/local/bin/youtube-dl https://yt-dl.org/downloads/latest/youtube-dl \
     && chmod a+rx /usr/local/bin/youtube-dl \
     \
     && addgroup -g ${gid} teaspeak \
